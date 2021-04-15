@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="MAIN_LOG" value="logs/doc-sign-be.log"/>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <springProfile name="default">
+
+        <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+        <logger name="com.accountView" level="DEBUG"/>
+        <logger name="org.springframework" level="WARN"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+    </springProfile>
+
+    <springProfile name="prod">
+
+        <file>${MAIN_LOG}</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/archived/doc-sign-be.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- Max size of each archived file -->
+            <maxFileSize>10MB</maxFileSize>
+            <!-- Total size of all archive files
+                 If total size exceeds this setting, it will delete old archived file. -->
+            <totalSizeCap>2GB</totalSizeCap>
+            <!-- Days to keep -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <logger name="com.accountView" level="INFO"/>
+        <logger name="org.hibernate" level="WARN"/>
+        <logger name="org.springframework" level="WARN"/>
+
+        <root level="ERROR">
+            <appender-ref ref="FILE-ROLLING"/>
+        </root>
+
+    </springProfile>
+
+</configuration>

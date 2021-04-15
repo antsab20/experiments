@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <title>Account</title>
+</head>
+<body>
+<h1>Login</h1>
+<form action="#" th:action="@{/account}"  th:object="${account}" method="POST">
+    <div>
+        <label>first</label>
+        <input th:field="*{amount}"/>
+        <p th:each="error: ${#fields.errors('amount')}"
+           th:text="${error}">Validation error</p>
+    </div>
+
+    <button type="submit">submit</button>
+</form>
+</body>
+</html>
