@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: ${DATABASE_MAX_POOL_SIZE:20}
+      minimum-idle: ${DATABASE_MIN_POOL_SIZE:1}
+      idle-timeout: ${DATABASE_IDLE_TIMEOUT:600000}
+      connection-timeout: ${DATABASE_CONNECTION_TIMEOUT:30000}
+
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:slot_booking}
+    driverClassName: org.postgresql.Driver
+    username: ${DATABASE_USERNAME:tester}
+    password: ${DATABASE_PASSWORD:tester}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    show-sql: true
+log4j:
+  logger:
+    org:
+      springframework=ALL:
