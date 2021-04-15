@@ -1,0 +1,50 @@
+quarkus:
+  datasource:
+    url: jdbc:postgresql://localhost:5434/automation_flows
+    driver: org.postgresql.Driver
+    username: postgres
+    password:
+  hibernate-orm:
+    database:
+      default-schema: auditinfo
+  http:
+    port: 9994
+    cors: true
+  log:
+    file:
+      enable: true
+      path: /tmp/quarkus.log
+      min-level: DEBUG
+  smallrye-health:
+    root-path: /automation-flows/health
+
+application:
+  userName: admin
+  password: admin
+  environment: 'dev'
+  primary-domain: '{0}.gov.ro'
+  name-length: 10
+
+mautic:
+  userName: admin
+  password: admina
+  error-mail-id: 2
+  success-mail-id: 2
+
+application-api/mp-rest/url: https://application.org
+application-api/mp-rest/scope: javax.inject.Singleton
+
+scim-api/mp-rest/url: https://scim.org/rest/scim/v2
+scim-api/mp-rest/scope: javax.inject.Singleton
+
+mautic-api/mp-rest/url: http://localhost
+mautic-api/mp-rest/scope: javax.inject.Singleton
+
+application-api/Retry/maxRetries: 4
+application-api/Retry/maxDuration: 10000
+
+scim-api/Retry/maxRetries: 4
+scim-api/Retry/maxDuration: 60000
+
+mautic-api/Retry/maxRetries: 4
+mautic-api/Retry/maxDuration: 10000

@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:10
+    restart: always
+    ports:
+      - "127.0.0.1:5434:5432"
+    volumes:
+      - source: ./docker/images/postgres
+        target: /docker-entrypoint-initdb.d
+        type: bind
+        read_only: true
